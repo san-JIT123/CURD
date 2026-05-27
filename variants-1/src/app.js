@@ -4,7 +4,7 @@ let app = express();
 
 app.use(express.json());
 
-// create notes
+// create notes api
 app.post("/api/notes", async (req, res) => {
   let { title, des } = req.body;
 
@@ -30,6 +30,15 @@ app.post("/api/notes", async (req, res) => {
 
   return res.status(201).json({
     message: "Note create successfully",
+  });
+});
+
+// fetch api
+app.get("/api/notes", async (req, res) => {
+  let notes = await NoteModel.find();
+  return res.status(200).json({
+    message: "Fetched  Notes  successfully",
+    notes: notes,
   });
 });
 export default app;
