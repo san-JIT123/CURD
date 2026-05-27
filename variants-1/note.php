@@ -7,4 +7,4 @@ Import :React web-package manager (bundler vite-alow direct import and export)
 
 
  <!-- config folder -->
-  for 
+  for as
