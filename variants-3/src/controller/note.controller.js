@@ -1,9 +1,10 @@
 import ApiResponse from "../../utils/apiResponse.js";
 import asyncHandle from "../../utils/asyncHandle.js";
-import createNoteService from "../service/note.service.js";
+import NoteModel from "../model/note.model.js";
+import { createNoteService } from "../service/note.service.js";
 
-// createNoteController
-let createNoteController = asyncHandle(async (req, res) => {
+// create Note Controller
+export let createNoteController = asyncHandle(async (req, res) => {
   let result = await createNoteService(req.body);
 
   console.log(result);
@@ -12,4 +13,11 @@ let createNoteController = asyncHandle(async (req, res) => {
     .json(new ApiResponse("create note successfully", result));
 });
 
-export default createNoteController;
+// fetch Note Controller
+export let fetchNoteController = asyncHandle(async (req, res) => {
+  let fetchNote = await NoteModel.find();
+
+  return res
+    .status(200)
+    .json(new ApiResponse("note fetch successfully", fetchNote));
+});

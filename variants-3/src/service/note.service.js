@@ -2,7 +2,7 @@ import ApiError from "../../utils/apiError.js";
 import NoteModel from "../model/note.model.js";
 
 //  create Note service
-let createNoteService = async (data) => {
+export let createNoteService = async (data) => {
   let { title, des } = data;
 
   //   validation
@@ -21,5 +21,3 @@ let createNoteService = async (data) => {
 
   return newNote;
 };
-
-export default createNoteService;
