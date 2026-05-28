@@ -1,7 +1,10 @@
 import ApiResponse from "../../utils/apiResponse.js";
 import asyncHandle from "../../utils/asyncHandle.js";
 import NoteModel from "../model/note.model.js";
-import { createNoteService } from "../service/note.service.js";
+import {
+  createNoteService,
+  updateNoteService,
+} from "../service/note.service.js";
 
 // create Note Controller
 export let createNoteController = asyncHandle(async (req, res) => {
@@ -21,3 +24,15 @@ export let fetchNoteController = asyncHandle(async (req, res) => {
     .status(200)
     .json(new ApiResponse("note fetch successfully", fetchNote));
 });
+
+// update note controller
+export let updateNoteController = asyncHandle(async (req, res) => {
+  let updateNote = await updateNoteService(req);
+
+  return res
+    .status(200)
+    .json(new ApiResponse("update note successfully", updateNote));
+});
+
+
+ 

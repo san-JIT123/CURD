@@ -21,3 +21,26 @@ export let createNoteService = async (data) => {
 
   return newNote;
 };
+
+// update Note Service
+export let updateNoteService = async (data) => {
+  let { title, des } = data.body;
+  let { id } = data.params;
+
+  if (!title || !des) throw new ApiError("Filed  title and des required ", 400);
+
+  if (title.trim().length < 3)
+    throw new ApiError("title is required 3 character  ");
+
+  if (des.trim().length < 10)
+    throw new ApiError("title is required 10 character  ");
+
+  let note = await NoteModel.findById(id);
+  if (!note) throw new ApiError("note note found", 404);
+
+  note.title = title;
+  note.des = des;
+  await note.save();
+
+  return note;
+};
