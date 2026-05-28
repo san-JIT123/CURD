@@ -3,6 +3,7 @@ import asyncHandle from "../../utils/asyncHandle.js";
 import NoteModel from "../model/note.model.js";
 import {
   createNoteService,
+  deleteNoteService,
   updateNoteService,
 } from "../service/note.service.js";
 
@@ -34,5 +35,11 @@ export let updateNoteController = asyncHandle(async (req, res) => {
     .json(new ApiResponse("update note successfully", updateNote));
 });
 
-
- 
+// delete note controller
+export let deleteNoteController = asyncHandle(async (req, res) => {
+  let result = await deleteNoteService(req.params);
+  console.log(result);
+  return res
+    .status(200)
+    .json(new ApiResponse("delete note successfully", result));
+});

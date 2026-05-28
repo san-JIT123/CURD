@@ -44,3 +44,12 @@ export let updateNoteService = async (data) => {
 
   return note;
 };
+
+// delete Note Service
+export let deleteNoteService = async (data) => {
+  let { id } = data;
+
+  let deleteNote = await NoteModel.findByIdAndDelete(id);
+
+  return deleteNote;
+};
